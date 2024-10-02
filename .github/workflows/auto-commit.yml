@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - name: Checkout repository content
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Cập nhật từ v2 lên v3
 
     - name: Commit changes
       run: |
@@ -19,4 +19,3 @@ jobs:
         git add .
         git commit -m "Auto commit" || echo "No changes to commit"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-
