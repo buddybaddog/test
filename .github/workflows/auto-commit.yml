@@ -2,7 +2,7 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Chạy mỗi 1 phút
+    - cron: '*/5 * * * *'  # Chạy mỗi 5 phút
 
 jobs:
   commit:
@@ -10,12 +10,18 @@ jobs:
 
     steps:
     - name: Checkout repository content
-      uses: actions/checkout@v3  # Cập nhật từ v2 lên v3
+      uses: actions/checkout@v3  # Sử dụng phiên bản mới nhất
 
-    - name: Commit changes
+    - name: Set up Git configuration
       run: |
         git config --local user.email "humhliao@gmail.com"
         git config --local user.name "humhliao"
+
+    - name: Commit changes
+      run: |
         git add .
         git commit -m "Auto commit" || echo "No changes to commit"
+
+    - name: Push changes
+      run: |
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
