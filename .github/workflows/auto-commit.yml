@@ -1,0 +1,21 @@
+name: Auto Commit
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'  # Chạy mỗi 1 phút
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository content
+      uses: actions/checkout@v2
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "humhliao@gmail.com"
+        git config --local user.name "humhliao"
+        git add .
+        git commit -m "Auto commit" || echo "No changes to commit"
+        git push origin main
