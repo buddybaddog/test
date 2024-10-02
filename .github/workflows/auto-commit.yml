@@ -18,4 +18,5 @@ jobs:
         git config --local user.name "humhliao"
         git add .
         git commit -m "Auto commit" || echo "No changes to commit"
-        git push origin main
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
